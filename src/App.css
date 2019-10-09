@@ -23,7 +23,7 @@ h2{text-align:center}
   text-transform: uppercase;
 }
 .id {
-  color: #7ac4b3 !important;
+  color: #e8eaf6 !important;
   text-align: center;
 
 }
@@ -36,4 +36,8 @@ h2{text-align:center}
 
 .tekst:first-letter {
   text-transform: uppercase;
+}
+
+.center {
+  text-align: center;
 }

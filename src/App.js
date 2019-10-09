@@ -8,11 +8,10 @@ import Link from '@material-ui/core/Link';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+
+
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+
 import Paper from '@material-ui/core/Paper';
 import Data from './Getdata';
 
@@ -28,25 +27,7 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
-}))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 
 function Created() {
@@ -67,13 +48,6 @@ const useStyles = makeStyles(theme => ({
     body: {
       backgroundColor: theme.palette.common.white,
     },
-    ul: {
-      margin: 0,
-      padding: 0,
-    },
-    li: {
-      listStyle: 'none',
-    },
   },
   root: {
     width: '100%',
@@ -84,6 +58,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 700,
   },
   appBar: {
+    backgroundColor: '#e8eaf6',
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   toolbar: {
@@ -98,15 +73,7 @@ const useStyles = makeStyles(theme => ({
   heroContent: {
     padding: theme.spacing(8, 0, 6),
   },
-  cardHeader: {
-    backgroundColor: theme.palette.grey[200],
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing(2),
-  },
+
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
     marginTop: theme.spacing(8),
@@ -123,6 +90,9 @@ const useStyles = makeStyles(theme => ({
 export default function Pricing() {
   const classes = useStyles();
   
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   return (
     <React.Fragment>
@@ -133,7 +103,7 @@ export default function Pricing() {
             AKD Zadatak
           </Typography>
           
-          <Button href="#" color="primary" variant="outlined" className={classes.link}>
+          <Button href="#" color="primary" variant="outlined" onClick={refreshPage} className={classes.link}>
             Osvježi
           </Button>
         </Toolbar>
@@ -147,28 +117,8 @@ export default function Pricing() {
       <Container maxWidth="md" component="main">
         
         <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>ID</StyledTableCell>
-            <StyledTableCell align="right">Naslov</StyledTableCell>
-            <StyledTableCell align="right">Opis</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+          <Data />
+        </Paper>
       </Container>
       {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
