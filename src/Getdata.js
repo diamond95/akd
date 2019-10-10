@@ -48,9 +48,17 @@ class App extends React.Component {
       this.state = {
         items: [],
         isLoaded: false,
-        addModalShow : false,
+        addModalShow: false,
       }
     }
+
+    openModal (id) {
+      this.setState({
+        addModalShow: {
+            [id]: true
+         }
+      });
+   }
 
     componentDidMount() {
 
@@ -99,19 +107,17 @@ class App extends React.Component {
                     </StyledTableCell>
                     <StyledTableCell>
                       <ButtonToolbar>
-                      <Button variant='primary' onClick={() => this.setState({addModalShow: true})}>
+                      <Button variant='primary'   onClick={() => this.setState({addModalShow: [item.id]})}>
                         Komentari
                       </Button>
                       </ButtonToolbar>
 
-                      
-                      <ViewComments show={this.state.addModalShow} onHide={addModalClose} />
-                   
                     </StyledTableCell>
                     <StyledTableCell align="left" className="tekst">{item.title}</StyledTableCell>
                     <StyledTableCell align="center" className="tekst">{item.body}</StyledTableCell>
                     </StyledTableRow>
                 ))}
+                <ViewComments  show={this.state.addModalShow} onHide={addModalClose} />
             </TableBody>
             </Table>
           </div>

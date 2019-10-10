@@ -3,30 +3,13 @@ import {Modal, Button} from 'react-bootstrap';
 
 
 
-export default class AddModal extends Component {
+export default class AddModal extends React.Component {
 
-  constructor(props) {
-        
-    super(props);
- 
-  }
-
-  componentDidMount() {
-
-    fetch('https://jsonplaceholder.typicode.com/posts/2') // fetch here with clicked button key ( ID )
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          items: json,
-        })
-      });
-
-  }
-
+  
     render() {
         return(
-            <Modal
+          
+            <Modal key={this.props.id}
             {...this.props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
@@ -34,7 +17,7 @@ export default class AddModal extends Component {
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                Komentari
+                Komentari za objavu {this.props.id}.
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
