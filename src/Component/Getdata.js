@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './App.css';
+import '../App.css';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -7,11 +7,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import Table from '@material-ui/core/Table';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-
 import { Button, ButtonToolbar } from 'react-bootstrap';
-import ViewComments from './Component/ViewComments';
-import NewPost from './Component/NewPost';
+import ViewComments from './ViewComments';
+import NewPost from './NewPost';
 
 
 const StyledTableCell = withStyles(theme => ({
@@ -124,8 +122,8 @@ class App extends React.Component {
                     {item.id}.
                     </StyledTableCell>
                   <StyledTableCell>
-                    <ButtonToolbar>
-                      <Button variant='primary' onClick={() => this.openModel(item.id)}>
+                    <ButtonToolbar >
+                      <Button size="sm" variant='primary' onClick={() => this.openModel(item.id)}>
                         Komentari
                       </Button>
                     </ButtonToolbar>

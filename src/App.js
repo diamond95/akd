@@ -8,12 +8,9 @@ import Link from '@material-ui/core/Link';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-
-
 import TableCell from '@material-ui/core/TableCell';
-
 import Paper from '@material-ui/core/Paper';
-import Data from './Getdata';
+import Data from './Component/Getdata';
 
 
 
