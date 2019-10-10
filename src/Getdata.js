@@ -7,7 +7,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import Table from '@material-ui/core/Table';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
+
+
+import {Button, ButtonToolbar} from 'react-bootstrap';
+import ViewComments from './Component/ViewComments';
 
 
 const StyledTableCell = withStyles(theme => ({
@@ -45,6 +48,7 @@ class App extends React.Component {
       this.state = {
         items: [],
         isLoaded: false,
+        addModalShow : false,
       }
     }
 
@@ -64,11 +68,13 @@ class App extends React.Component {
     render() {
 
       var { isLoaded, items } = this.state;
-
+      var addModalClose = () => this.setState({addModalShow: false});
       if(!isLoaded) {
         return <div className="center"><CircularProgress disableShrink /></div>;
       }
 
+     
+      
       else {
 
         return (
@@ -90,9 +96,13 @@ class App extends React.Component {
                         {item.id}.
                     </StyledTableCell>
                     <StyledTableCell>
-                    <Button variant="contained" color="primary" onClick={() => this.setState({showModal: true})} className={useStyles.button}>
-                        Detalji
-                    </Button>
+                      <ButtonToolbar>
+                      <Button variant='primary' onClick={() => this.setState({addModalShow: true})}>
+                        Komentari
+                      </Button>
+                      </ButtonToolbar>
+                      <ViewComments show={this.state.addModalShow} onHide={addModalClose} />
+                   
                     </StyledTableCell>
                     <StyledTableCell align="left" className="tekst">{item.title}</StyledTableCell>
                     <StyledTableCell align="center" className="tekst">{item.body}</StyledTableCell>
@@ -101,8 +111,10 @@ class App extends React.Component {
             </TableBody>
             </Table>
           </div>
+          
         );
       }
+      
 
     }
 }

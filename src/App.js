@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function Pricing() {
+export default function Index() {
   const classes = useStyles();
   
   function refreshPage() {
