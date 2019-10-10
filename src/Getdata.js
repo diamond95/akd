@@ -11,6 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import ViewComments from './Component/ViewComments';
+import NewPost from './Component/NewPost';
 
 
 const StyledTableCell = withStyles(theme => ({
@@ -50,17 +51,11 @@ class App extends React.Component {
       isLoaded: false,
       addModalShow: false,
       modelData: [],
-      modelId: null
+      modelId: null,
+      openForm: false
     }
   }
 
-  openModal(id) {
-    this.setState({
-      addModalShow: {
-        [id]: true
-      }
-    });
-  }
 
   componentDidMount() {
 
@@ -75,6 +70,9 @@ class App extends React.Component {
 
   }
 
+  openNewModel() {
+    this.setState({ openForm: true})
+  }
 
   openModel(id) {
 
@@ -91,6 +89,7 @@ class App extends React.Component {
 
     var { isLoaded, items } = this.state;
     var addModalClose = () => this.setState({ addModalShow: false });
+    var FormClose = () => this.setState({ openForm: false });
     if (!isLoaded) {
       return <div className="center"><CircularProgress disableShrink /></div>;
     }
@@ -101,7 +100,14 @@ class App extends React.Component {
 
       return (
         <div className="App">
-
+                  <StyledTableCell >
+                    <ButtonToolbar>
+                      <Button variant='danger' onClick={() => this.openNewModel()}>
+                        Novi post
+                      </Button>
+                    </ButtonToolbar>
+                    <NewPost show={this.state.openForm} onHide={FormClose} />
+                  </StyledTableCell>
           <Table >
             <TableHead>
               <TableRow>
