@@ -65,6 +65,8 @@ class App extends React.Component {
 
     }
 
+    
+
     render() {
 
       var { isLoaded, items } = this.state;
@@ -101,6 +103,8 @@ class App extends React.Component {
                         Komentari
                       </Button>
                       </ButtonToolbar>
+
+                      
                       <ViewComments show={this.state.addModalShow} onHide={addModalClose} />
                    
                     </StyledTableCell>
@@ -114,6 +118,7 @@ class App extends React.Component {
           
         );
       }
+     
       
 
     }

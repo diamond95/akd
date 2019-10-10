@@ -5,7 +5,24 @@ import {Modal, Button} from 'react-bootstrap';
 
 export default class AddModal extends Component {
 
-    
+  constructor(props) {
+        
+    super(props);
+ 
+  }
+
+  componentDidMount() {
+
+    fetch('https://jsonplaceholder.typicode.com/posts/2') // fetch here with clicked button key ( ID )
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          items: json,
+        })
+      });
+
+  }
 
     render() {
         return(
@@ -33,4 +50,5 @@ export default class AddModal extends Component {
           </Modal>
         );
     }
+    
 }
