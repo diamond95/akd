@@ -31,9 +31,7 @@ export default class NewModal extends React.Component {
       };
       onSubmit = e => {
         e.preventDefault();
-        console.log(this.state);
-        
-    
+
         fetch('https://jsonplaceholder.typicode.com/posts', {
           method: 'POST',
           headers: {  "Content-type": "application/json; charset=UTF-8" },
@@ -42,9 +40,9 @@ export default class NewModal extends React.Component {
             body: this.body.value,
             userId: 1,
           })
-        }).then(response => response.json())
+        }).then(json => console.log(json))
         .then(
-          this.handleToggleClick,
+          this.handleToggleClick
         );
       };
 
@@ -120,7 +118,7 @@ export default class NewModal extends React.Component {
             <Modal.Footer>
                 <WarningBanner warn={this.state.showWarning} />
 
-                <Button variant='success' onClick={e => this.onSubmit(e), this.handleToggleClick}>Dodaj</Button>
+                <Button variant='success' onClick={e => this.onSubmit(e)}>Dodaj</Button>
                 <Button onClick={this.props.onHide}>Odustani</Button>
             </Modal.Footer>
           </Modal>

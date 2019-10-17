@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import '../App.css';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import Table from '@material-ui/core/Table';
@@ -30,11 +30,6 @@ const StyledTableRow = withStyles(theme => ({
   },
 }))(TableRow);
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
 
 
 class App extends React.Component {
