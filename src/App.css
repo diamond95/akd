@@ -40,3 +40,11 @@ h2{text-align:center}
 .center {
   text-align: center;
 }
+
+.hide{
+  visibility: hidden;
+}
+
+h5 {
+  color: green;
+}

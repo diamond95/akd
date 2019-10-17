@@ -3,14 +3,26 @@ import {Modal, Button, Form, Row, Col} from 'react-bootstrap';
 
 
 
+function WarningBanner(props) {
+  return (
+    <div className={props.warn ? "warning": "hide"}>
+      <h5> Uspješno dodano! </h5>
+    </div>
+  );
+}
+
+
 export default class NewModal extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
           title: '',
-          body: ''
+          body: '',
+          showWarning: false
         };
+        this.handleToggleClick = this.handleToggleClick.bind(this);
+     
       }
       change = e => {
         this.setState({
@@ -20,17 +32,41 @@ export default class NewModal extends React.Component {
       onSubmit = e => {
         e.preventDefault();
         console.log(this.state);
+        
     
         fetch('https://jsonplaceholder.typicode.com/posts', {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: {
+          method: 'POST',
+          headers: {  "Content-type": "application/json; charset=UTF-8" },
+          body: JSON.stringify({
             title: this.title.value,
             body: this.body.value,
-
-          }
-        });
+            userId: 1,
+          })
+        }).then(response => response.json())
+        .then(
+          this.handleToggleClick,
+        );
       };
+
+      handleToggleClick() {
+        
+        this.setState(prevState => ({
+          showWarning: !prevState.showWarning,   
+        }));
+        this.closeAddBoardModal();
+      }
+      closeAddBoardModal(){
+        setTimeout(() => {
+          this.setState(this.props.onHide);
+          this.setState(this.state = {
+            showWarning: false,
+            title: '',
+            body: '',
+          });
+        }, 1300)
+        
+      }
+   
     render() {
         return(
           
@@ -53,7 +89,7 @@ export default class NewModal extends React.Component {
                     </Form.Label>
                     <Col sm="10">
                     <Form.Control type="text" placeholder="Unesi naziv"
-                    name="title"
+                    name="title" autoComplete="off"
                     ref={ref => {
                       this.title = ref;
                     }}
@@ -69,7 +105,7 @@ export default class NewModal extends React.Component {
                     </Form.Label>
                     <Col sm="10">
                     <Form.Control type="text" placeholder="Unesi opis" 
-                    name="body"
+                    name="body" autoComplete="off"
                     ref={ref => {
                       this.body = ref;
                     }}
@@ -82,8 +118,10 @@ export default class NewModal extends React.Component {
             
             </Modal.Body>
             <Modal.Footer>
-                <Button variant='success' onClick={e => this.onSubmit(e)}>Dodaj</Button>
-                <Button onClick={this.props.onHide}>Zatvori</Button>
+                <WarningBanner warn={this.state.showWarning} />
+
+                <Button variant='success' onClick={e => this.onSubmit(e), this.handleToggleClick}>Dodaj</Button>
+                <Button onClick={this.props.onHide}>Odustani</Button>
             </Modal.Footer>
           </Modal>
         );
